@@ -1,0 +1,265 @@
+<!--
+Mobile web development
+Template for General purpose html5 page with JQuery Mobile
+Created by: Rezvan Rose Mansouri
+email: rmansouri5831@conestogac.on.ca
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>Title</title>
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <link href="css/lib/jquery.mobile-1.4.5.css" rel="stylesheet">
+    <script src="js/rmDAL.js"></script>
+    <script src="js/rmglobal.js"></script>
+    <script src="js/rmutil.js"></script>
+    <script src="js/rmfacade.js"></script>
+    <script src="js/rmdatabase.js"></script>
+    <link rel="stylesheet" href="css/rmmystyle.css">
+
+    <style>
+        .ButtonBlack{
+            background-color: black;
+            border-color: black;
+            color: #fff;
+            text-shadow: None;
+        }
+        .img-container {
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<!------------------------------------------------------HomePage-------------------------------------------------------->
+<div data-role="page" id="rmHomePage">
+    <header data-position="fixed" data-role="header" data-theme="a">
+        <h1>RM Feedback A2</h1>
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li><a class="ui-btn-active ui-state-persist" data-icon="home" href="#rmHomePage">Home</a></li>
+                <li><a data-icon="plus" href="#rmAddFeedbackPage">Add</a></li>
+                <li><a data-icon="grid" href="#rmViewFeedbackPage">Reviews</a></li>
+                <li><a data-icon="gear" href="#rmSettingsPage">Settings</a></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h3>Rose Mansouri's Feedback A2 App</h3>
+
+        <p>Welcome to the Rose Mansouri's Feedback A2 app.
+            A prototype designed for mobile programming class.
+            This is the first iteration of the app to keep
+            track of different places you visited along with your reviews.</p>
+
+        <div class="img-container">
+            <img alt="search the world" src="img/rm-image.png">
+        </div>
+
+        <p>Please feel free to contact me if you have any suggestions!</p>
+        <!--using a link-->
+        <a data-icon="plus" data-iconpos="left" data-role="button" href="tel: +15192405204">Call: 519.240.5204</a>
+        <a data-icon="plus" data-iconpos="left" data-role="button" href="mailto:rmansouri5831@conestogac.on.ca">rmansouri5831@conestogac.on.ca</a>
+        Website:
+        <a data-icon="plus" data-iconpos="left" data-role="button" href="https://www.conestogac.on.ca/">Conestoga
+            College</a>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="a">
+        <h1>&copy; 2022 Rose Mansouri</h1>
+    </footer>
+</div>
+
+
+<!--------------------------------------------------AddFeedbackPage------------------------------------------------------->
+<div data-role="page" id="rmAddFeedbackPage">
+    <header data-position="fixed" data-role="header" data-theme="a">
+        <h1>Add a Feedback</h1>
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li><a data-icon="home" href="#rmHomePage">Home</a></li>
+                <li><a class="ui-btn-active ui-state-persist" data-icon="plus" href="#rmAddFeedbackPage">Add</a></li>
+                <li><a data-icon="grid" href="#rmViewFeedbackPage">Reviews</a></li>
+                <li><a data-icon="gear" href="#rmSettingsPage">Settings</a></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <form action="" id="frmAddFeedback" method="post" name="frmAddFeedback">
+            <label for="txtbNameAdd">Business Name:</label>
+            <input id="txtbNameAdd" name="txtbNameAdd" type="text" value="">
+            <label for="cmbTypeAdd">Type:</label>
+            <select name="cmbTypeAdd" id="cmbTypeAdd" data-native-menu="true">
+                <option value="Other"  >Others</option>
+                <option value="Canadian">Canadian</option>
+                <option value="Asian">Asian</option>
+            </select>
+            <label for="txtEmailAdd">Reviewer Email:</label>
+            <input id="txtEmailAdd" name="txtEmailAdd" type="text" value="">
+            <label for="txaCommentAdd">Reviewer Comments:</label>
+            <textarea cols="40" id="txaCommentAdd" name="txaCommentAdd" rows="8"></textarea>
+            <label for="reviewDateAdd">Review Date:</label>
+            <input type="date" id="reviewDateAdd" name="reviewDateAdd" data-clear-btn="true">
+
+            <input type="checkbox" name="chkRating" id="chkRating">
+            <label for="chkRating">Do you want to add your ratings?</label>
+
+            <div id="ratingCase" style="display: none">
+                <label for="txtFoodQly">Food Quality(0-5):</label>
+                <input type="number" name="txtFoodQly" id="txtFoodQly" min="0" max="5" value="0">
+                <label for="txtService">Service(0-5):</label>
+                <input type="number" name="txtService" id="txtService" min="0" max="5" value="0">
+                <label for="txtValue">Value(0-5):</label>
+                <input type="number" name="txtValue" id="txtValue" min="0" max="5" value="0">
+                <label for="txtOverallRating">Overall Rating(calculated):</label>
+                <input type="text" name="txtOverallRating" id="txtOverallRating" value="" readonly>
+            </div>
+
+            <button class="ui-btn-active" data-inline="true" id="btnSave"
+                    name="btnSave" type="button">Save
+            </button>
+        </form>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="a">
+        <h1>&copy; 2022 Rose Mansouri</h1>
+    </footer>
+</div>
+
+
+<!-------------------------------------------------ViewFeedbackPage---------------------------------------------------------->
+<div data-role="page" id="rmViewFeedbackPage">
+    <header data-position="fixed" data-role="header" data-theme="a">
+        <h1>List of Reviews</h1>
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li><a data-icon="home" href="#rmHomePage">Home</a></li>
+                <li><a data-icon="plus" href="#rmAddFeedbackPage">Add</a></li>
+                <li><a class="ui-btn-active ui-state-persist" data-icon="grid" href="#rmViewFeedbackPage">Reviews</a>
+                </li>
+                <li><a data-icon="gear" href="#rmSettingsPage">Settings</a></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <ul data-inset="true" data-role="listview" id="rmlstViewFeedback">
+
+            <li data-icon="false">
+                <a href="#rmModifyFeedbackPage">
+                    <h3>Business Name: Rose's Sweet Bakery</h3>
+                    <p> Reviewer Email: rm@yahoo.com
+                    <p>
+                    <p> Comments: Awesome Cakes! </p>
+                    <p>Overall Rating: 100%</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#rmModifyFeedbackPage">
+                    <h3>Business Name: Rose's Perfume Shop</h3>
+                    <p>Reviewer Email: rase@google.com</p>
+                    <p> Comments: best price! </p>
+                    <p> Overall Rating: 80%</p>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="a">
+        <h1>&copy; 2022 Rose Mansouri</h1>
+    </footer>
+</div>
+
+
+<!---------------------------------------------------ModifyFeedbackPage------------------------------------------------------>
+<div data-role="page" id="rmModifyFeedbackPage">
+    <header data-position="fixed" data-role="header" data-theme="a">
+        <h1>Modify Feedback</h1>
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li><a data-icon="home" href="#rmHomePage">Home</a></li>
+                <li><a data-icon="plus" href="#rmAddFeedbackPage">Add</a></li>
+                <li><a class="ui-btn-active ui-state-persist" data-icon="grid" href="#rmViewFeedbackPage">Reviews</a>
+                </li>
+                <li><a data-icon="gear" href="#rmSettingsPage">Settings</a></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <form id="frmModify" name="frmModify">
+            <label for="txtModifyName">Business Name:</label>
+            <!--   <input id="RMbName" name="RMbName" type="text" value="Rose's Sweet Bakery" data-clear-btn="true">-->
+            <input id="txtModifyName" name="txtModifyName" type="text" value="Rose's Sweet Bakery">
+            <label for="txtModifyEmail">Reviewer Email:</label>
+            <input id="txtModifyEmail" name="txtModifyEmail" type="text" value="rm@yahoo.com">
+            <label for="txtModifyComment">Reviewer Comments:</label>
+            <textarea cols="40" id="txtModifyComment" name="txtModifyComment" rows="8">Awesome Cakes!</textarea>
+
+            <input type="checkbox" name="chkModifyRating" id="chkModifyRating">
+            <label for="chkModifyRating">Do you want to add your ratings?</label>
+
+            <div id="ratingCaseModify" style="display: none">
+                <label for="txtModifyFoodQly">Food Quality(0-5):</label>
+                <input type="number" name="txtModifyFoodQly" id="txtModifyFoodQly" min="0" max="5" value="0">
+                <label for="txtModifyService">Service(0-5):</label>
+                <input type="number" name="txtModifyService" id="txtModifyService" min="0" max="5" value="0">
+                <label for="txtModifyValue">Value(0-5):</label>
+                <input type="number" name="txtModifyValue" id="txtModifyValue" min="0" max="5" value="0">
+                <label for="txtModifyOverallRating">Overall Rating(calculated):</label>
+                <input type="text" name="txtModifyOverallRating" id="txtModifyOverallRating" value="" readonly>
+            </div>
+
+            <div data-role="controlgroup" data-type="horizontal">
+
+                <button data-inline="true" id="rmBtnCancel" name="rmBtnCancel" type="button">Cancel</button>
+                <button data-inline="true" id="rmBtnDelete" name="rmBtnDelete" class="ButtonBlack" type="button"
+                        data-theme="b">Delete
+                </button>
+                <button class="ui-btn-active" data-inline="true" id="rmBtnUpdate" name="rmBtnUpdate"
+                        type="button">Update
+                </button>
+            </div>
+        </form>
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="a">
+        <h1>&copy; 2022 Rose Mansouri</h1>
+    </footer>
+</div>
+
+
+<!---------------------------------------------------------SettingsPage-------------------------------------------------------------------------------->
+<div data-role="page" id="rmSettingsPage">
+    <header data-position="fixed" data-role="header" data-theme="a">
+        <h1>Settings</h1>
+        <div data-iconpos="top" data-role="navbar">
+            <ul>
+                <li><a data-icon="home" href="#rmHomePage">Home</a></li>
+                <li><a data-icon="plus" href="#rmAddFeedbackPage">Add</a></li>
+                <li><a data-icon="grid" href="#rmViewFeedbackPage">Reviews</a></li>
+                <li><a class="ui-btn-active ui-state-persist" data-icon="gear" href="#rmSettingsPage">Settings</a></li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <label for="rmDefaultEmail">Default Reviewer Email:</label>
+        <input id="rmDefaultEmail" name="rmDefaultEmail" type="email" value="">
+
+        <button class="ui-btn-active" data-role="button" id="rmbtnSaveDefault"
+                name="rmbtnSaveDefault">Save Defaults
+        </button>
+        <button data-role="button" id="rmbtnClear" name="rmbtnClear"
+         data-theme="b" >Clear Database
+        </button>
+
+    </section>
+    <footer data-position="fixed" data-role="footer" data-theme="a">
+        <h1>&copy; 2022 Rose Mansouri</h1>
+    </footer>
+</div>
+
+
+</body>
+</html>
