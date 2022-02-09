@@ -7,3 +7,7 @@ select.error,
 textarea.error {
     border: 1px red solid;
 }
+
+.img-container {
+    text-align: center;
+}

@@ -19,6 +19,14 @@ function btnSave_click() {
     SaveFeedback();
 }
 
+function btnUpdate_click() {
+    UpdateFeedback();
+}
+
+function btnSaveDefault_click() {
+    SaveToLocalStorage();
+}
+
 function init() {
     $("#chkRating").on("click",chkRating_click);
     $("#txtService").on("change",txtOverallRating_change);
@@ -32,6 +40,9 @@ function init() {
     $("#txtModifyValue").on("change",txtModifyOverallRating_change);
 
     $("#btnSave").on("click", btnSave_click);
+    $("#btnUpdate").on("click", btnUpdate_click);
+
+    $("#btnSaveDefault").on("click", btnSaveDefault_click);
 }
 
 $(document).ready(function ()   {

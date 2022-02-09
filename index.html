@@ -14,25 +14,14 @@ email: rmansouri5831@conestogac.on.ca
     <script src="js/lib/jquery-2.1.4.js"></script>
     <script src="js/lib/jquery.mobile-1.4.5.js"></script>
     <link href="css/lib/jquery.mobile-1.4.5.css" rel="stylesheet">
+    <script src="js/lib/jquery.validate.js"></script>
+
     <script src="js/rmDAL.js"></script>
     <script src="js/rmglobal.js"></script>
     <script src="js/rmutil.js"></script>
     <script src="js/rmfacade.js"></script>
     <script src="js/rmdatabase.js"></script>
     <link rel="stylesheet" href="css/rmmystyle.css">
-
-    <style>
-        .ButtonBlack{
-            background-color: black;
-            border-color: black;
-            color: #fff;
-            text-shadow: None;
-        }
-        .img-container {
-            text-align: center;
-        }
-    </style>
-
 
 </head>
 <body>
@@ -91,8 +80,8 @@ email: rmansouri5831@conestogac.on.ca
     </header>
     <section data-role="content">
         <form action="" id="frmAddFeedback" method="post" name="frmAddFeedback">
-            <label for="txtbNameAdd">Business Name:</label>
-            <input id="txtbNameAdd" name="txtbNameAdd" type="text" value="">
+            <label for="txtNameAdd">Business Name:</label>
+            <input id="txtNameAdd" name="txtNameAdd" type="text" value="">
             <label for="cmbTypeAdd">Type:</label>
             <select name="cmbTypeAdd" id="cmbTypeAdd" data-native-menu="true">
                 <option value="Other"  >Others</option>
@@ -110,13 +99,13 @@ email: rmansouri5831@conestogac.on.ca
             <label for="chkRating">Do you want to add your ratings?</label>
 
             <div id="ratingCase" style="display: none">
-                <label for="txtFoodQly">Food Quality(0-5):</label>
-                <input type="number" name="txtFoodQly" id="txtFoodQly" min="0" max="5" value="0">
-                <label for="txtService">Service(0-5):</label>
-                <input type="number" name="txtService" id="txtService" min="0" max="5" value="0">
-                <label for="txtValue">Value(0-5):</label>
-                <input type="number" name="txtValue" id="txtValue" min="0" max="5" value="0">
-                <label for="txtOverallRating">Overall Rating(calculated):</label>
+                <label for="txtFoodQly">Food Quality (0-5):</label>
+                <input type="number" name="txtFoodQly" id="txtFoodQly"  value="0">
+                <label for="txtService">Service (0-5):</label>
+                <input type="number" name="txtService" id="txtService" value="0">
+                <label for="txtValue">Value (0-5):</label>
+                <input type="number" name="txtValue" id="txtValue"  value="0">
+                <label for="txtOverallRating">Overall Rating (calculated):</label>
                 <input type="text" name="txtOverallRating" id="txtOverallRating" value="" readonly>
             </div>
 
@@ -146,7 +135,7 @@ email: rmansouri5831@conestogac.on.ca
         </div>
     </header>
     <section data-role="content">
-        <ul data-inset="true" data-role="listview" id="rmlstViewFeedback">
+        <ul data-inset="true" data-role="listview" id="lstViewFeedback">
 
             <li data-icon="false">
                 <a href="#rmModifyFeedbackPage">
@@ -189,36 +178,43 @@ email: rmansouri5831@conestogac.on.ca
         </div>
     </header>
     <section data-role="content">
-        <form id="frmModify" name="frmModify">
-            <label for="txtModifyName">Business Name:</label>
-            <!--   <input id="RMbName" name="RMbName" type="text" value="Rose's Sweet Bakery" data-clear-btn="true">-->
-            <input id="txtModifyName" name="txtModifyName" type="text" value="Rose's Sweet Bakery">
-            <label for="txtModifyEmail">Reviewer Email:</label>
-            <input id="txtModifyEmail" name="txtModifyEmail" type="text" value="rm@yahoo.com">
-            <label for="txtModifyComment">Reviewer Comments:</label>
-            <textarea cols="40" id="txtModifyComment" name="txtModifyComment" rows="8">Awesome Cakes!</textarea>
+        <form id="frmModifyFeedback" name="frmModifyFeedback">
+            <label for="txtNameModify">Business Name:</label>
+            <input id="txtNameModify" name="txtNameModify" type="text" value="">
+            <label for="cmbTypeModify">Type:</label>
+            <select name="cmbTypeModify" id="cmbTypeModify" data-native-menu="true">
+                <option value="Other"  >Others</option>
+                <option value="Canadian">Canadian</option>
+                <option value="Asian">Asian</option>
+            </select>
+            <label for="txtEmailModify">Reviewer Email:</label>
+            <input id="txtEmailModify" name="txtEmailModify" type="text" value="">
+            <label for="txtCommentModify">Reviewer Comments:</label>
+            <textarea cols="40" id="txtCommentModify" name="txtCommentModify" rows="8"></textarea>
+            <label for="reviewDateModify">Review Date:</label>
+            <input type="date" id="reviewDateModify" name="reviewDateModify" data-clear-btn="true">
 
             <input type="checkbox" name="chkModifyRating" id="chkModifyRating">
             <label for="chkModifyRating">Do you want to add your ratings?</label>
 
             <div id="ratingCaseModify" style="display: none">
-                <label for="txtModifyFoodQly">Food Quality(0-5):</label>
-                <input type="number" name="txtModifyFoodQly" id="txtModifyFoodQly" min="0" max="5" value="0">
-                <label for="txtModifyService">Service(0-5):</label>
-                <input type="number" name="txtModifyService" id="txtModifyService" min="0" max="5" value="0">
-                <label for="txtModifyValue">Value(0-5):</label>
-                <input type="number" name="txtModifyValue" id="txtModifyValue" min="0" max="5" value="0">
-                <label for="txtModifyOverallRating">Overall Rating(calculated):</label>
+                <label for="txtModifyFoodQly">Food Quality (0-5):</label>
+                <input type="number" name="txtModifyFoodQly" id="txtModifyFoodQly"  value="0">
+                <label for="txtModifyService">Service (0-5):</label>
+                <input type="number" name="txtModifyService" id="txtModifyService" value="0">
+                <label for="txtModifyValue">Value (0-5):</label>
+                <input type="number" name="txtModifyValue" id="txtModifyValue" value="0">
+                <label for="txtModifyOverallRating">Overall Rating (calculated):</label>
                 <input type="text" name="txtModifyOverallRating" id="txtModifyOverallRating" value="" readonly>
             </div>
 
             <div data-role="controlgroup" data-type="horizontal">
 
-                <button data-inline="true" id="rmBtnCancel" name="rmBtnCancel" type="button">Cancel</button>
-                <button data-inline="true" id="rmBtnDelete" name="rmBtnDelete" class="ButtonBlack" type="button"
+                <button data-inline="true" id="btnCancel" name="btnCancel" type="button">Cancel</button>
+                <button data-inline="true" id="btnDelete" name="btnDelete" class="ButtonBlack" type="button"
                         data-theme="b">Delete
                 </button>
-                <button class="ui-btn-active" data-inline="true" id="rmBtnUpdate" name="rmBtnUpdate"
+                <button class="ui-btn-active" data-inline="true" id="btnUpdate" name="btnUpdate"
                         type="button">Update
                 </button>
             </div>
@@ -244,13 +240,13 @@ email: rmansouri5831@conestogac.on.ca
         </div>
     </header>
     <section data-role="content">
-        <label for="rmDefaultEmail">Default Reviewer Email:</label>
-        <input id="rmDefaultEmail" name="rmDefaultEmail" type="email" value="">
+        <label for="txtDefaultEmail">Default Reviewer Email:</label>
+        <input id="txtDefaultEmail" name="txtDefaultEmail" type="email" value="rmansouri5831@conestogac.on.ca">
 
-        <button class="ui-btn-active" data-role="button" id="rmbtnSaveDefault"
-                name="rmbtnSaveDefault">Save Defaults
+        <button class="ui-btn-active" data-role="button" id="btnSaveDefault"
+                name="btnSaveDefault">Save Defaults
         </button>
-        <button data-role="button" id="rmbtnClear" name="rmbtnClear"
+        <button data-role="button" id="btnClear" name="btnClear"
          data-theme="b" >Clear Database
         </button>
 
