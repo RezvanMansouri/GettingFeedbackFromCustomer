@@ -6,10 +6,14 @@ function doValidate_frmAddFeedback() {
             txtNameAdd: {
                 required: true,
                 rangelength : [2,20]
+                //minlength
+                //equalTo: "#txtPassword"
+                //url: true
             },
             txtEmailAdd: {
                 required: true,
-                emailcheck : true
+                emailcheck: true
+               // email : true
             },
             reviewDateAdd: {
                 required: true
@@ -24,7 +28,7 @@ function doValidate_frmAddFeedback() {
                 range: [0,5]
             }
         },
-        message:{
+        messages:{
             txtNameAdd: {
                 required: "Name is required",
                 rangelength : "Name must be 2-20 char long"
@@ -34,16 +38,16 @@ function doValidate_frmAddFeedback() {
                 emailcheck : "Email must be in a valid format"
             },
             reviewDateAdd: {
-                required: true
+                required: "Review Date is required"
             },
             txtFoodQly: {
                 range: "Rating can not be less than 0 or more than 5",
             },
             txtService: {
-                range: "Rating can not be be less than 0 or more than 5",
+                range: "Rating can not be less than 0 or more than 5",
             },
             txtValue: {
-                range: "Rating can not be be less than 0 or more than 5",
+                range: "Rating can not be less than 0 or more than 5",
             }
         }
     });
@@ -76,7 +80,7 @@ function doValidate_frmModifyFeedback() {
                 range: [0,5]
             }
         },
-        message:{
+        messages:{
             txtNameModify: {
                 required: "Name is required",
                 rangelength : "Name must be 2-20 char long"
@@ -86,16 +90,16 @@ function doValidate_frmModifyFeedback() {
                 emailcheck : "Email must be in a valid format"
             },
             reviewDateModify: {
-                required: true
+                required: "Review Date is required"
             },
             txtModifyFoodQly: {
                 range: "Rating can not be less than 0 or more than 5",
             },
             txtModifyService: {
-                range: "Rating can not be be less than 0 or more than 5",
+                range: "Rating can not be less than 0 or more than 5",
             },
             txtModifyValue: {
-                range: "Rating can not be be less than 0 or more than 5",
+                range: "Rating can not be less than 0 or more than 5",
             }
         }
     })
@@ -103,9 +107,12 @@ function doValidate_frmModifyFeedback() {
 }
 
 
-jQuery.validator.addMethod("emailcheck",
+jQuery.validator.addMethod(
+    "emailcheck",
     function (value,element){
         var regex = /^\S+@\S+\.\S+$/;
         return this.optional(element) || regex.test(value);
     },
-    "Must be a valid email");
+    "Must be a valid email"
+);
+

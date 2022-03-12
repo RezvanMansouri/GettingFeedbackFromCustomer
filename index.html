@@ -16,20 +16,22 @@ email: rmansouri5831@conestogac.on.ca
     <link href="css/lib/jquery.mobile-1.4.5.css" rel="stylesheet">
     <script src="js/lib/jquery.validate.js"></script>
 
-    <script src="js/rmDAL.js"></script>
-    <script src="js/rmglobal.js"></script>
-    <script src="js/rmutil.js"></script>
-    <script src="js/rmfacade.js"></script>
     <script src="js/rmdatabase.js"></script>
+    <script src="js/rmDAL.js"></script>
+    <script src="js/rmfacade.js"></script>
+    <script src="js/rmutil.js"></script>
+    <script src="js/rmglobal.js"></script>
+
     <link rel="stylesheet" href="css/rmmystyle.css">
 
 </head>
 <body>
 
+
 <!------------------------------------------------------HomePage-------------------------------------------------------->
 <div data-role="page" id="rmHomePage">
     <header data-position="fixed" data-role="header" data-theme="a">
-        <h1>RM Feedback A2</h1>
+        <h1>RM Feedback A3</h1>
         <div data-iconpos="top" data-role="navbar">
             <ul>
                 <li><a class="ui-btn-active ui-state-persist" data-icon="home" href="#rmHomePage">Home</a></li>
@@ -40,9 +42,9 @@ email: rmansouri5831@conestogac.on.ca
         </div>
     </header>
     <section data-role="content">
-        <h3>Rose Mansouri's Feedback A2 App</h3>
+        <h3>Rose Mansouri's Feedback A3 App</h3>
 
-        <p>Welcome to the Rose Mansouri's Feedback A2 app.
+        <p>Welcome to the Rose Mansouri's Feedback A3 app.
             A prototype designed for mobile programming class.
             This is the first iteration of the app to keep
             track of different places you visited along with your reviews.</p>
@@ -50,6 +52,7 @@ email: rmansouri5831@conestogac.on.ca
         <div class="img-container">
             <img alt="search the world" src="img/rm-image.png">
         </div>
+
 
         <p>Please feel free to contact me if you have any suggestions!</p>
         <!--using a link-->
@@ -63,7 +66,6 @@ email: rmansouri5831@conestogac.on.ca
         <h1>&copy; 2022 Rose Mansouri</h1>
     </footer>
 </div>
-
 
 <!--------------------------------------------------AddFeedbackPage------------------------------------------------------->
 <div data-role="page" id="rmAddFeedbackPage">
@@ -81,15 +83,13 @@ email: rmansouri5831@conestogac.on.ca
     <section data-role="content">
         <form action="" id="frmAddFeedback" method="post" name="frmAddFeedback">
             <label for="txtNameAdd">Business Name:</label>
-            <input id="txtNameAdd" name="txtNameAdd" type="text" value="">
+            <input id="txtNameAdd" name="txtNameAdd" type="text" value="" data-clear-btn="true">
             <label for="cmbTypeAdd">Type:</label>
-            <select name="cmbTypeAdd" id="cmbTypeAdd" data-native-menu="true">
-                <option value="Other"  >Others</option>
-                <option value="Canadian">Canadian</option>
-                <option value="Asian">Asian</option>
+            <select name="cmbTypeAdd" id="cmbTypeAdd" data-native-menu="true" data-clear-btn="true">
+
             </select>
             <label for="txtEmailAdd">Reviewer Email:</label>
-            <input id="txtEmailAdd" name="txtEmailAdd" type="text" value="">
+            <input id="txtEmailAdd" name="txtEmailAdd" type="text" value="" data-clear-btn="true">
             <label for="txaCommentAdd">Reviewer Comments:</label>
             <textarea cols="40" id="txaCommentAdd" name="txaCommentAdd" rows="8"></textarea>
             <label for="reviewDateAdd">Review Date:</label>
@@ -100,11 +100,11 @@ email: rmansouri5831@conestogac.on.ca
 
             <div id="ratingCase" style="display: none">
                 <label for="txtFoodQly">Food Quality (0-5):</label>
-                <input type="number" name="txtFoodQly" id="txtFoodQly"  value="0">
+                <input type="number" name="txtFoodQly" id="txtFoodQly"  value="0" data-clear-btn="true">
                 <label for="txtService">Service (0-5):</label>
-                <input type="number" name="txtService" id="txtService" value="0">
+                <input type="number" name="txtService" id="txtService" value="0" data-clear-btn="true">
                 <label for="txtValue">Value (0-5):</label>
-                <input type="number" name="txtValue" id="txtValue"  value="0">
+                <input type="number" name="txtValue" id="txtValue"  value="0" data-clear-btn="true">
                 <label for="txtOverallRating">Overall Rating (calculated):</label>
                 <input type="text" name="txtOverallRating" id="txtOverallRating" value="" readonly>
             </div>
@@ -112,6 +112,7 @@ email: rmansouri5831@conestogac.on.ca
             <button class="ui-btn-active" data-inline="true" id="btnSave"
                     name="btnSave" type="button">Save
             </button>
+
         </form>
     </section>
     <footer data-position="fixed" data-role="footer" data-theme="a">
@@ -136,26 +137,10 @@ email: rmansouri5831@conestogac.on.ca
     </header>
     <section data-role="content">
         <ul data-inset="true" data-role="listview" id="lstViewFeedback">
-
-            <li data-icon="false">
-                <a href="#rmModifyFeedbackPage">
-                    <h3>Business Name: Rose's Sweet Bakery</h3>
-                    <p> Reviewer Email: rm@yahoo.com
-                    <p>
-                    <p> Comments: Awesome Cakes! </p>
-                    <p>Overall Rating: 100%</p>
-                </a>
-            </li>
-            <li data-icon="false">
-                <a href="#rmModifyFeedbackPage">
-                    <h3>Business Name: Rose's Perfume Shop</h3>
-                    <p>Reviewer Email: rase@google.com</p>
-                    <p> Comments: best price! </p>
-                    <p> Overall Rating: 80%</p>
-                </a>
-            </li>
-
         </ul>
+        <div id="norecord" style="display: none">
+            <h1>No record found</h1>
+        </div>
     </section>
     <footer data-position="fixed" data-role="footer" data-theme="a">
         <h1>&copy; 2022 Rose Mansouri</h1>
@@ -179,13 +164,17 @@ email: rmansouri5831@conestogac.on.ca
     </header>
     <section data-role="content">
         <form id="frmModifyFeedback" name="frmModifyFeedback">
+
+            <div hidden>
+                <input type="text" id="txtId" name="txtId"
+                       class="required" data-theme="a" data-clear-btn="true" placeholder="Enter ID">
+            </div>
+
             <label for="txtNameModify">Business Name:</label>
             <input id="txtNameModify" name="txtNameModify" type="text" value="">
             <label for="cmbTypeModify">Type:</label>
             <select name="cmbTypeModify" id="cmbTypeModify" data-native-menu="true">
-                <option value="Other"  >Others</option>
-                <option value="Canadian">Canadian</option>
-                <option value="Asian">Asian</option>
+
             </select>
             <label for="txtEmailModify">Reviewer Email:</label>
             <input id="txtEmailModify" name="txtEmailModify" type="text" value="">
@@ -209,14 +198,14 @@ email: rmansouri5831@conestogac.on.ca
             </div>
 
             <div data-role="controlgroup" data-type="horizontal">
-
-                <button data-inline="true" id="btnCancel" name="btnCancel" type="button">Cancel</button>
-                <button data-inline="true" id="btnDelete" name="btnDelete" class="ButtonBlack" type="button"
+                <button data-inline="true" id="btnCancel" name="btnCancel" type="button" onclick="history.back()">Cancel</button>
+                <button data-inline="true" id="btnDelete" name="btnDelete" type="button"
                         data-theme="b">Delete
                 </button>
                 <button class="ui-btn-active" data-inline="true" id="btnUpdate" name="btnUpdate"
                         type="button">Update
                 </button>
+                <button data-inline="true" id="btnReset" name="btnReset" type="reset" >Reset</button>
             </div>
         </form>
     </section>
@@ -246,7 +235,7 @@ email: rmansouri5831@conestogac.on.ca
         <button class="ui-btn-active" data-role="button" id="btnSaveDefault"
                 name="btnSaveDefault">Save Defaults
         </button>
-        <button data-role="button" id="btnClear" name="btnClear"
+        <button data-role="button" id="btnClearDatabase" name="btnClearDatabase"
          data-theme="b" >Clear Database
         </button>
 
